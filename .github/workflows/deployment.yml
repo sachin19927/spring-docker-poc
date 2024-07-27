@@ -24,11 +24,15 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
+      - name: Export branch name as Env variable
+        uses: nelonoel/branch-name@v1.0.1
 
       - name: Set up JDK 21
         uses: actions/setup-java@v3
-          with:
+        with:
             java-version: '21'
             distribution: 'temurin' # Or another distribution like 'zulu' or 'adopt'
 
