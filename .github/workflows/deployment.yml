@@ -16,7 +16,7 @@ on:
         default: false
 jobs:
   deploy:
-    runs-on: aws-ec2
+    runs-on: git_spring_aws
     
     steps:
     - name: Checkout code
