@@ -16,7 +16,7 @@ on:
         default: false
 jobs:
   deploy:
-    runs-on: git_spring_aws
+    runs-on: self-hosted
     
     steps:
     - name: Checkout code
