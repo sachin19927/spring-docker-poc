@@ -1,0 +1,29 @@
+name: Deploy to Aws
+on:
+  push:
+    branches:
+      - 'master'
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+        description: Select The environment
+        default: dev
+        required: true
+      release-build:
+        type: boolean
+        description: Wheather is this a release build?
+        default: false
+jobs:
+  deploy:
+    runs-on: aws-ec2
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build with Maven
+      run: mvn clean install -DskipTests
+
+    - name: Run the application
+      run: mvn spring-boot:run
