@@ -95,7 +95,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>${{IMAGE_TAG}}</name>
+						<name>my-app</name>
 						<env>
 							<BP_JVM_VERSION>21</BP_JVM_VERSION>
 						</env>
