@@ -48,3 +48,6 @@ jobs:
 
     - name: Compile and Run Tests
       run: mvn -U clean package
+
+    - name: Login to AWS ECR
+      run : aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 773120352783.dkr.ecr.ap-south-1.amazonaws.com
