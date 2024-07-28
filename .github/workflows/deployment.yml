@@ -43,7 +43,7 @@ jobs:
       env:
          RELEASE_BUILD: ${{github.event.inputs.release-build}}
       run: |
-         if [[$RELEASE_BUILD == true]]; then
+         if [[ $RELEASE_BUILD == true ]]; then
             echo "IMAGE_TAG=${{env.REGISTRY}}/${{env.NAME_SPACE}}/${{env.APP_NAME}}:${{env.BRANCH_NAME}}-${{env.RUN_ID}}"  >> $GITHUB_ENV
          else
             echo "IMAGE_TAG=${{env.REGISTRY}}/${{env.NAME_SPACE}}/${{env.APP_NAME}}:devbuild-${{env.BRANCH_NAME}}-${{env.RUN_ID}}"  >> $GITHUB_ENV
