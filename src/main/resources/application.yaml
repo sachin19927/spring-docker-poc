@@ -1,0 +1,10 @@
+spring:
+  jmx:
+    enabled : true
+  application:
+    name: web-app-api
+  web:
+    resources:
+      add-mappings: false 
+  codec:
+    max-in-memory-size: 10MB 

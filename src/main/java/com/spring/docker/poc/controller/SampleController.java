@@ -9,6 +9,6 @@ public class SampleController {
 	@GetMapping("/version")
 	public String testMethod()
 	{
-		return "v1";
+		return "v3";
 	}
 }

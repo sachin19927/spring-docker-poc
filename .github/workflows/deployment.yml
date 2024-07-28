@@ -23,6 +23,7 @@ jobs:
     env:
       RUN_ID: ${{github.run_id}}
       APP_NAME: spring-docker-poc
+      NAME_SPACE: api-services 
       REGISTRY: 773120352783.dkr.ecr.ap-south-1.amazonaws.com
 
     steps:
@@ -33,6 +34,9 @@ jobs:
 
     - name: Export branch name as Env variable
       uses: nelonoel/branch-name@v1.0.1
+    
+    - name: Compile and Run Tests
+      run: mvn -U clean package    
       
     - name: Set Image Tag
       id: sets-image-tag
@@ -40,19 +44,16 @@ jobs:
          RELEASE_BUILD: ${{github.event.inputs.release-build}}
       run: |
          if [[$RELEASE_BUILD == true]]; then
-            echo "IMAGE_TAG=${{env.REGISTRY}}/api-services/${{env.APP_NAME}}:${{env.BRANCH_NAME}}-${{env.RUN_ID}}"  >> $GITHUB_ENV
+            echo "IMAGE_TAG=${{env.REGISTRY}}/${{env.NAME_SPACE}}/${{env.APP_NAME}}:${{env.BRANCH_NAME}}-${{env.RUN_ID}}"  >> $GITHUB_ENV
          else
-            echo "IMAGE_TAG=${{env.REGISTRY}}/api-services/${{env.APP_NAME}}:devbuild-${{env.BRANCH_NAME}}-${{env.RUN_ID}}"  >> $GITHUB_ENV
+            echo "IMAGE_TAG=${{env.REGISTRY}}/${{env.NAME_SPACE}}/${{env.APP_NAME}}:devbuild-${{env.BRANCH_NAME}}-${{env.RUN_ID}}"  >> $GITHUB_ENV
          fi
 
     - name: Build Docker image
-      run: sudo docker build -t ${{env.APP_NAME}}:${{env.RUN_ID}} .
+      run: mvn spring-boot:build-image -DskipTests
 
     - name: Login to AWS ECR
       run : sudo aws ecr get-login-password --region ap-south-1 | sudo docker login --username AWS --password-stdin 773120352783.dkr.ecr.ap-south-1.amazonaws.com
-
-    - name: Tag Docker image
-      run: sudo docker tag ${{env.APP_NAME}}:${{env.RUN_ID}} ${{env.IMAGE_TAG}}
 
     - name: Push Docker image
       run: sudo docker push ${{env.IMAGE_TAG}}
