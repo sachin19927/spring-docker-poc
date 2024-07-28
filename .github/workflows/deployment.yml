@@ -1,4 +1,4 @@
-name: Deploy to Aws
+name: Deploy to Aws Backend Services
 on:
   push:
     branches:
