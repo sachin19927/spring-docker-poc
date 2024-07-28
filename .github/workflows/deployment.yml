@@ -19,7 +19,7 @@ concurrency:
   cancel-in-progress: true        
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: self-hosted-aws-backend
     
     steps:
     - name: Checkout code
