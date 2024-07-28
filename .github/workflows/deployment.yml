@@ -72,5 +72,5 @@ jobs:
     - name: Push Docker image
       run: sudo docker push ${{env.IMAGE_TAG}}
 
-    - name: Delete local image
-      run: sudo docker rmi -f ${{env.IMAGE_TAG}}
+    - name: Run Docker image
+      run: sudo docker run -d -p 4200:80 ${{env.IMAGE_TAG}}
