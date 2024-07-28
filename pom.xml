@@ -99,6 +99,9 @@
 						<env>
 							<BP_JVM_VERSION>21</BP_JVM_VERSION>
 						</env>
+						<bindings>
+							<binding>${{basedir}}/bindings:/platform/bindings</binding>
+						</bindings>
 					</image>
 					<excludes>
 						<exclude>
