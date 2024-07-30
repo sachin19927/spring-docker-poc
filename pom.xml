@@ -52,6 +52,11 @@
 		</dependency>
 
 		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-tracing-bridge-brave</artifactId>
 		</dependency>
@@ -64,6 +69,12 @@
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>7.0</version>
 		</dependency>
 
 
@@ -93,28 +104,20 @@
 				<artifactId>native-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                </configuration>
-            </plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring-boot.version}</version>
 				<configuration>
-					<image>
-						<name>my-app</name>
-						<env>
-							<BP_JVM_VERSION>21</BP_JVM_VERSION>
-						</env>
-						<bindings>
-							<binding>${{basedir}}/bindings:/platform/bindings</binding>
-						</bindings>
-					</image>
+					<!-- <image> <name>my-app</name> <env> <BP_JVM_VERSION>21</BP_JVM_VERSION> 
+						</env> <bindings> <binding>${{basedir}}/bindings:/platform/bindings</binding> 
+						</bindings> </image> -->
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -122,14 +125,8 @@
 						</exclude>
 					</excludes>
 				</configuration>
-				<executions>
-					<execution>
-						<id>build-info</id>
-						<goals>
-							<goal>build-info</goal>
-						</goals>
-					</execution>
-				</executions>
+				<!-- <executions> <execution> <id>build-info</id> <goals> <goal>build-image</goal> 
+					</goals> </execution> </executions> -->
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
