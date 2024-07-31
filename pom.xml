@@ -98,6 +98,7 @@
 	</dependencyManagement>
 
 	<build>
+		 <finalName>spring-docker-poc-1.0.0-SNAPSHOT</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.graalvm.buildtools</groupId>
