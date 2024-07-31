@@ -1,4 +1,6 @@
 spring:
+  jmx: 
+    enabled: true
   application:
     name: spring-docker-poc
   mvc:
@@ -6,7 +8,9 @@ spring:
   web:
     resources:
       add-mappings: false
-  
+  codec:
+    max-in-memory-size: 10MB
+
 management:
   endpoints:
     web:
