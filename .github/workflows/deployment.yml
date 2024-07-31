@@ -53,7 +53,7 @@ jobs:
       run: docker build -t ${{env.APP_NAME}}:${{env.RUN_ID}} .
 
     - name: Login to AWS ECR
-      run : sudo aws ecr get-login-password --region ap-south-1 | sudo docker login --username AWS --password-stdin 773120352783.dkr.ecr.ap-south-1.amazonaws.com
+      run : aws ecr get-login-password --region ap-south-1 | sudo docker login --username AWS --password-stdin 773120352783.dkr.ecr.ap-south-1.amazonaws.com
 
     - name: Tag Docker image
       run: docker tag ${{env.APP_NAME}}:${{env.RUN_ID}} ${{env.IMAGE_TAG}}
