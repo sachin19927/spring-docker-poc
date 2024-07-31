@@ -1,4 +1,7 @@
 spring:
+  jmx: 
+    enabled: true
+
   application:
     name: spring-docker-poc
   mvc:
@@ -6,6 +9,8 @@ spring:
   web:
     resources:
       add-mappings: false
+  codec:
+    max-in-memory-size: 10MB
   
 management:
   endpoints:
@@ -21,8 +26,8 @@ management:
         enabled: true
   zipkin:
     tracing:
-      endpoint: http://localhost:9411/api/v2/spans
+      endpoint: http://3.109.189.129:9411/api/v2/spans
   tracing:
     sampling:
       probablity: 1.0     
-       
+
