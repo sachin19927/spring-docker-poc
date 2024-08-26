@@ -1,7 +1,6 @@
 spring:
   jmx: 
     enabled: true
-
   application:
     name: spring-docker-poc
   mvc:
@@ -11,6 +10,22 @@ spring:
       add-mappings: false
   codec:
     max-in-memory-size: 10MB
+  datasource:
+    url: jdbc:postgresql://localhost:15432/postgres_docker_db?currentSchema=bookingdotcom
+    username: sachin19927
+    password: Sachin@123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      globally_quoted_identifiers: true
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        hibernate: org.hibernate.dialect.PostgreSQL95Dialect
+
   
 management:
   endpoints:
@@ -31,3 +46,24 @@ management:
     sampling:
       probablity: 1.0     
 
+swagger:
+  openapi:
+    local-url: http://localhost:8080
+    local-desc: Local Environment 
+    dev-url: http://localhost:8080
+    dev-desc: Dev Environment
+    test-url: http://localhost:8080
+    test-desc: Test Environment
+    stage-url: http://localhost:8080
+    stage-desc: Stage Environment
+    prod-url: https://prod-api.com
+    prod-desc: Prod Environment
+    contact-email: sachin19927@gmail.com
+    contact-name: SACHIN H S
+    contact-url: 
+    license-name: RIT License
+    license-url: https://choosealicense.com/licenses/mit/
+    info-title: Web App Backend API
+    info-version: 1.0
+    info-desc: This API exposes endpoints to manage Common Web Apps
+    info-term-service: https://github.com/sachin19927

@@ -36,8 +36,8 @@
         </appender>
 
         <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-            <!-- <destination>localhost:5044</destination> -->
-            <destination>3.109.189.129:5044</destination> 
+            <destination>localhost:5044</destination>
+            <!-- <destination>3.109.189.129:5044</destination>  -->
             <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
                 <providers>
                     <timestamp>
