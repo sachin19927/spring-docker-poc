@@ -13,6 +13,6 @@ public class SampleController {
 	public String testMethod()
 	{
 		log.info("calling Version Method");
-		return "v3";
+		return "v4";
 	}
 }

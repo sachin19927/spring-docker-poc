@@ -36,15 +36,16 @@ management:
     health:
       show-details: always
   metrics:
-    export:
-      prometheus:
-        enabled: true
   zipkin:
     tracing:
-      endpoint: http://3.109.189.129:9411/api/v2/spans
+      endpoint: http://localhost:9411/api/v2/spans
   tracing:
     sampling:
       probablity: 1.0     
+  prometheus:
+    metrics:
+      export:
+        enabled: true
 
 swagger:
   openapi:
