@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.docker.poc.model.LibraryRecord;
-import com.spring.docker.poc.service.LibraryServiceImpl;
+import com.spring.docker.poc.model.ProductRecord;
+import com.spring.docker.poc.service.ProductService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -31,28 +31,28 @@ import lombok.extern.slf4j.Slf4j;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/v1")
-@Tag(name = "Library", description = "Library Management APIs")
-public class LibraryContoller {
+@Tag(name = "Product", description = "Product Management APIs")
+public class ProductContoller {
 	
 	@Autowired
-	private LibraryServiceImpl libraryService;
+	private ProductService productService;
 	
 	
-	@GetMapping(value="/library", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE,
+	@GetMapping(value="/product", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE,
             MediaType.TEXT_XML_VALUE})
-	public ResponseEntity<List<LibraryRecord>> getAllBooks(@RequestParam(required = false) String title) {
+	public ResponseEntity<List<ProductRecord>> getAllProducts(@RequestParam(required = false) String title) {
 		try {
-			List<LibraryRecord> records = new ArrayList<>();
+			List<ProductRecord> productRecords = new ArrayList<>();
 			
 			if (title == null)
-				libraryService.getAllBooksData().forEach(records::add);
+				productService.getProductsList().forEach(productRecords::add);
 			else
-				libraryService.getAllBooksDataByName(title).forEach(records::add);
+				productService.getProductByName(title).forEach(productRecords::add);
 			
-			if (records.isEmpty()) {
+			if (productRecords.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
-			return new ResponseEntity<>(records, HttpStatus.OK);
+			return new ResponseEntity<>(productRecords, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -68,35 +68,35 @@ public class LibraryContoller {
 		      @ApiResponse(responseCode = "404"),
 		      @ApiResponse(responseCode = "500")})
 	@GetMapping("/library/{id}")
-	public ResponseEntity<LibraryRecord> getTutorialById(@PathVariable("id") Long id) {
+	public ResponseEntity<ProductRecord> getTutorialById(@PathVariable("id") String id) {
 		if(id!=null)
 		{
-			LibraryRecord bookdetail = libraryService.getBookDetails(id);
-			if(bookdetail!=null) {
-				return new ResponseEntity<>(bookdetail, HttpStatus.OK);
+			ProductRecord productRecord = productService.getProductById(id);
+			if(productRecord!=null) {
+				return new ResponseEntity<>(productRecord, HttpStatus.OK);
 			}
 		}
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 
-	@PostMapping("/library")
-	public ResponseEntity<LibraryRecord> createTutorial(@RequestBody LibraryRecord libRecord) {
+	@PostMapping("/product")
+	public ResponseEntity<ProductRecord> createProduct(@RequestBody ProductRecord productRecord) {
 		
 		log.info("Storing Book");
-		if(libRecord!=null) {
-			LibraryRecord bookDetail = libraryService.saveBook(libRecord);
-			return new ResponseEntity<>(bookDetail, HttpStatus.OK);
+		if(productRecord!=null) {
+			ProductRecord productRecords = productService.saveProduct(productRecord);
+			return new ResponseEntity<>(productRecords, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@PutMapping("/library/{id}")
-	public ResponseEntity<LibraryRecord> updateTutorial(@PathVariable("id") Long id, @RequestBody LibraryRecord updateData) {
+	@PutMapping("/product/{id}")
+	public ResponseEntity<ProductRecord> updateProduct(@PathVariable("id") String id, @RequestBody ProductRecord productRecordUpdate) {
 		
-		LibraryRecord result;
+		ProductRecord result;
 		if(id!=null) {
-			LibraryRecord existData=libraryService.updateBook(id,updateData);
+			ProductRecord existData=productService.updateProduct(id,productRecordUpdate);
 			if(existData!=null) {
 				
 					return new ResponseEntity<>(existData, HttpStatus.OK);	
@@ -109,21 +109,21 @@ public class LibraryContoller {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@DeleteMapping("/library/{id}")
-	public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") Long id) {
+	@DeleteMapping("/product/{id}")
+	public ResponseEntity<HttpStatus> deleteProductId(@PathVariable("id") String id) {
 		if(id!=null)
 		{
-			libraryService.deleteById(id);
+			productService.deleteProduct(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		else
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@DeleteMapping("/library")
-	public ResponseEntity<HttpStatus> deleteAllTutorials() {
+	@DeleteMapping("/product")
+	public ResponseEntity<HttpStatus> deleteAllProducts() {
 		try {
-			libraryService.deleteAll();
+			productService.deleteProducts();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
