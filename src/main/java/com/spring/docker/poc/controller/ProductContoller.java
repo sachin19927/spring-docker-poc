@@ -40,14 +40,14 @@ public class ProductContoller {
 	
 	@GetMapping(value="/product", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE,
             MediaType.TEXT_XML_VALUE})
-	public ResponseEntity<List<ProductRecord>> getAllProducts(@RequestParam(required = false) String title) {
+	public ResponseEntity<List<ProductRecord>> getAllProducts(@RequestParam(required = false) String productName) {
 		try {
 			List<ProductRecord> productRecords = new ArrayList<>();
 			
-			if (title == null)
+			if (productName == null)
 				productService.getProductsList().forEach(productRecords::add);
 			else
-				productService.getProductByName(title).forEach(productRecords::add);
+				productService.getProductByName(productName).forEach(productRecords::add);
 			
 			if (productRecords.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -59,16 +59,16 @@ public class ProductContoller {
 	}
 	
 	@Operation(
-		      summary = "Retrieve a Tutorial by Id",
-		      description = "Get a Tutorial object by specifying its id. The response is Tutorial object with id, title, description and published status.",
+		      summary = "Retrieve a product by Id",
+		      description = "Get a Product object by specifying its id. The response is Tutorial object with id, title, description and published status.",
 		      tags = { "tutorials", "get" })
 		  @ApiResponses({
 		      @ApiResponse(responseCode = "200"),
 		      @ApiResponse(responseCode = "204"),
 		      @ApiResponse(responseCode = "404"),
 		      @ApiResponse(responseCode = "500")})
-	@GetMapping("/library/{id}")
-	public ResponseEntity<ProductRecord> getTutorialById(@PathVariable("id") String id) {
+	@GetMapping("/product/{id}")
+	public ResponseEntity<ProductRecord> getProductById(@PathVariable String id) {
 		if(id!=null)
 		{
 			ProductRecord productRecord = productService.getProductById(id);
@@ -83,7 +83,7 @@ public class ProductContoller {
 	@PostMapping("/product")
 	public ResponseEntity<ProductRecord> createProduct(@RequestBody ProductRecord productRecord) {
 		
-		log.info("Storing Book");
+		log.info("Storing product");
 		if(productRecord!=null) {
 			ProductRecord productRecords = productService.saveProduct(productRecord);
 			return new ResponseEntity<>(productRecords, HttpStatus.OK);
@@ -92,9 +92,8 @@ public class ProductContoller {
 	}
 	
 	@PutMapping("/product/{id}")
-	public ResponseEntity<ProductRecord> updateProduct(@PathVariable("id") String id, @RequestBody ProductRecord productRecordUpdate) {
+	public ResponseEntity<ProductRecord> updateProduct(@PathVariable String id, @RequestBody ProductRecord productRecordUpdate) {
 		
-		ProductRecord result;
 		if(id!=null) {
 			ProductRecord existData=productService.updateProduct(id,productRecordUpdate);
 			if(existData!=null) {
@@ -114,7 +113,7 @@ public class ProductContoller {
 		if(id!=null)
 		{
 			productService.deleteProduct(id);
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		else
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -124,7 +123,7 @@ public class ProductContoller {
 	public ResponseEntity<HttpStatus> deleteAllProducts() {
 		try {
 			productService.deleteProducts();
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}

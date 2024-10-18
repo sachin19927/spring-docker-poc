@@ -35,24 +35,27 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductRecord getProductById(String id) {
-		 Product product = productRepository.findById(id).orElseThrow(()-> new RuntimeException("Procut was not found: "+id));
+		 Product product = productRepository.findById(id).orElseThrow(()-> new RuntimeException("Product was not found: "+id));
 		 ProductRecord productRecord = productMapper.entityDataToRecord(product);
 		 return productRecord;
 	}
 
 	@Override
 	public ProductRecord updateProduct(String id, ProductRecord productRecord) {
-		Product product = productRepository.findById(id).orElseThrow(()-> new RuntimeException("Procut was not found: "+id));
-		product.setId(id);
-		productRepository.save(product);
-		ProductRecord productRecordUpdated = productMapper.entityDataToRecord(product);
+		Product product = productRepository.findById(id).orElseThrow(()-> new RuntimeException("Product was not found: "+id));
+		Product productToUpdate = productMapper.recordDataToEntity(productRecord);
+		if(product!=null)
+		productToUpdate.setId(id);
+		productRepository.save(productToUpdate);
+		Product productAfterUpdate = productRepository.findById(id).orElseThrow(()-> new RuntimeException("Product was not found: "+id));
+		ProductRecord productRecordUpdated = productMapper.entityDataToRecord(productAfterUpdate);
 		return productRecordUpdated;
 		
 	}
 
 	@Override
 	public void deleteProduct(String id) {
-		productRepository.findById(id).orElseThrow(()-> new RuntimeException("Procut was not found: "+id));
+		productRepository.findById(id).orElseThrow(()-> new RuntimeException("Product was not found: "+id));
 		productRepository.deleteById(id);
 	}
 
