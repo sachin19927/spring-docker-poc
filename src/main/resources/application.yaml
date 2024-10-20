@@ -30,19 +30,13 @@ management:
       export:
         enabled: true
 
-cloud:
-  aws:
-    credentials:
-        access-key: ENC(dyXXJ5yO/DQd2F3/gPVeyIejKmjTR87nvsfhMpB8dk09GXhw1M3lVz4mEIAvC/alRxLtQOxcRqGYSduYuk1utA==)
-        secret-key: ENC(XAnsMujdTu3loDDmwTbRzTPFrXnQC7UTSrb+hrDVF3RYMWmm4bzPMv3Ij93ccND/LYuH4Xb61pXJXlUJV2blisIz3VmX/TMEFy+JFs450NE=)
-    region: 
-        static: ap-south-1
-    stack:
-        auto: false
+azure:
+  storage:
+    container:
+      name: webappcontainer
+    connection:
+      string: DefaultEndpointsProtocol=https;AccountName=webapplayergenricstroage;AccountKey=duBCtud/fl3O5qsuQg81KlZqG7TtByreozV+EDcRx5PL3QSdVaxlyVmf2ggZrxJaaG/MnHUYLNjd+ASt+Be2Nw==;EndpointSuffix=core.windows.net       
 
-application:
-  bucket:
-    name: web-api-storage
 
 jasypt:
   encryptor:
