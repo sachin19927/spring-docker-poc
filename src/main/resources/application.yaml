@@ -30,6 +30,13 @@ management:
       export:
         enabled: true
 
+azure:
+  storage:
+    container:
+      name: webappcontainer
+    connection:
+      string: ENC(oZmvop3Mh9U9Kex9HL3zikkI32+EYqEnGZ8KuEOHghm9aeJ7Hg2MEbSMvne01/JHWubNAYmA0Q1pcbteT7rvAEzMJp1Vu3cgeI6UMO3MGW1p7s7ydQ4yGo3hcLeLRA0nTsWkiOm5hpvtbAOc6vAsIqacXK3EOBnKiOag2lXNgMSRHD2EgBrBBWn7EeHCVZbqHdMzy20VEznsnb3dHdIZQl33ioevuU7WrPrxzniOJiNiNv52FHbUZX4wXAd/iXlPrH0ihhlMQUdf57jpuSnXjA==)       
+
 jasypt:
   encryptor:
     algorithm: PBEWITHSHA256AND256BITAES-CBC-BC
