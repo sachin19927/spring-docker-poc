@@ -10,6 +10,26 @@ spring:
       add-mappings: false
   codec:
     max-in-memory-size: 10MB
+  mail:
+    username: ENC(J7vz3WlRp0at9Iow3eMmnGyJfNKHRPlMOFpdpzHwMjYGl57ItG/VnpeHxEdLLTVK/BpShsC62kIMPYLB6YTxDclGwtJzdFCUVNMAoQMPRkE=)
+    password: ENC(6xUczKwOrRVXjJviE8vIDxs1ymI8RpSmrdSo+u2VFsLWwZldjC8jhubeDa+qpMuwRMOfRMI1pKyRusW1w5+cVg==)
+    host: smtp.gmail.com
+    port: 587
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+#       debug: true  
+#   test-connection: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
 management:
   endpoints:
     web:
@@ -30,19 +50,10 @@ management:
       export:
         enabled: true
 
-cloud:
-  aws:
-    credentials:
-        access-key: ENC(dyXXJ5yO/DQd2F3/gPVeyIejKmjTR87nvsfhMpB8dk09GXhw1M3lVz4mEIAvC/alRxLtQOxcRqGYSduYuk1utA==)
-        secret-key: ENC(XAnsMujdTu3loDDmwTbRzTPFrXnQC7UTSrb+hrDVF3RYMWmm4bzPMv3Ij93ccND/LYuH4Xb61pXJXlUJV2blisIz3VmX/TMEFy+JFs450NE=)
-    region: 
-        static: ap-south-1
-    stack:
-        auto: false
-
-application:
-  bucket:
-    name: web-api-storage
+email:
+  from: developersjourneysource@gmail.com
+  cc: sachin19927@gmail.com
+  bcc: sachin19927@gmail.com				
 
 jasypt:
   encryptor:

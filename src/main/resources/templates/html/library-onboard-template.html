@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <title th:remove="all">Book On-Boarded</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+    	.highLight{
+			font-weight: bolder;
+         }
+         table,th,td{
+			text-align: center;
+			border: 1px solid black;
+			border-collapse:collapse
+         }
+    </style>
+    
+  </head>
+  <body style="background-color: #FFFFFF;">
+  <div valign="middle" height="100%" width="100%">
+  		<img  width="100%" src="cid:header" alt="Banner Header">
+  </div>
+  <text>
+    Dear <span th:text="${author}">Author</span>,
+  </text>  
+  
+  <p>
+  I am excited to inform you that a new book, <span class="highLight" th:text="${title}">Book Title</span>, has been added to our library on <span class="highLight" th:text="${createdDate}">Created On</span>. As a valued member of our library community, we wanted to inform you about this new addition and invite you to come and check it out.
+ </p>	
+<p>
+<span class="highLight" th:text="${title}">Book title</span> is written by <span class="highLight" th:text="${author}">Author</span> and is a <span class="highLight" th:text="${category}">Category</span>. The book has received great reviews and is sure to be a popular read among our members.
+ </p>
+<p>
+We have added several copies of the book to our collection, so you can easily find it on our shelves. Alternatively, you can search for it in our online catalog and reserve a copy for yourself.
+ </p>
+<p>
+We strive to continuously improve our library collection and bring in new and interesting books for our members to enjoy. We hope you will take advantage of this opportunity to read <span class="highLight" th:p="${title}">Book Title</span> and look forward to seeing you at the library soon.
+ </p>
+ 
+ <table style="width: 100%;">
+ <tr>
+ <th>Book Title</th>
+ <td><span class="highLight" th:text="${title}">Book title</span></td>
+ </tr>
+ <tr>
+ <th>Author</th>
+ <td><span class="highLight" th:text="${author}">Author</span></td>
+ </tr>
+ <tr>
+ <th>Category</th>
+ <td><span class="highLight" th:text="${category}">Category</span></td>
+ </tr>
+ <tr>
+ <th>Published year</th>
+ <td><span class="highLight" th:text="${year}">Published Year</span></td>
+ </tr>
+ <tr>
+ <th>Price</th>
+ <td><span class="highLight" th:text="${price}">Price</span></td>
+ </tr>
+ </table>
+ 
+<p>
+Thank you for your continued support.
+</p>
+Sincerely,
+  
+<div valign="middle" height="100%" width="100%">
+  		<img  width="100%" src="cid:footer" alt="Banner Header">
+</div>
+  </body>
+</html>
