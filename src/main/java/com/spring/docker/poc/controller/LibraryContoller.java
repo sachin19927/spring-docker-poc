@@ -24,8 +24,6 @@ public class LibraryContoller {
 	
 	@Autowired
 	private EmailService emailService;
-	
-	
 
 	@PostMapping("/library")
 	public ResponseEntity<LibraryRecord> createTutorial(@RequestBody LibraryRecord libRecord) {

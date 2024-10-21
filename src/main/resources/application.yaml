@@ -11,8 +11,8 @@ spring:
   codec:
     max-in-memory-size: 10MB
   mail:
-    username: ENC(J7vz3WlRp0at9Iow3eMmnGyJfNKHRPlMOFpdpzHwMjYGl57ItG/VnpeHxEdLLTVK/BpShsC62kIMPYLB6YTxDclGwtJzdFCUVNMAoQMPRkE=)
-    password: ENC(6xUczKwOrRVXjJviE8vIDxs1ymI8RpSmrdSo+u2VFsLWwZldjC8jhubeDa+qpMuwRMOfRMI1pKyRusW1w5+cVg==)
+    username: ENC(BByxju/YKOwVQMkcbeDM/jtkIOZXrMibqMMFpLc0U3YKWb3NBKErXCqwXUC4Q6ccm2O5XWDkqgEp/QzVTI3EiD0SBZUejIPT1VuNqN7Nd+M=)
+    password: ENC(QFp45vodrnumYj5PV6elX+caUuKiwZLj7IzqmVZWaO+F0SGSalQMCwG3XVcFb/asfv9wKA4Np4kodppNVPn4kw==)
     host: smtp.gmail.com
     port: 587
     protocol: smtp
@@ -59,7 +59,7 @@ jasypt:
   encryptor:
     algorithm: PBEWITHSHA256AND256BITAES-CBC-BC
     provider-class-name: org.bouncycastle.jce.provider.BouncyCastleProvider
-    password: IamBatman@07
+    password: IamBatman@07 
 
 swagger:
   openapi:

@@ -19,9 +19,6 @@ public class EmailService {
 	@Autowired
 	private EmailSender emailSender;
 	
-	//@Autowired
-	//private KafkaProducer kafkaProducer;
-	
 	public void sendOnBoardMail(LibraryRecord libraryRecord) {
 	
 		var banners = Arrays.asList(EmailTemplates.LIBRARY_HEADER,EmailTemplates.SIGNATURE_FOOTER);
