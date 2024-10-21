@@ -77,13 +77,13 @@
 			<version>7.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
 		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk-s3</artifactId>
-			<version>1.12.464</version>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
 		</dependency>
-		
+
+
+
 		<!-- Swagger UI -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -91,7 +91,7 @@
 			<version>2.0.3</version>
 		</dependency>
 
-<!-- Jasypt Encryption -->
+		<!-- Jasypt Encryption -->
 		<dependency>
 			<groupId>com.github.ulisesbocchio</groupId>
 			<artifactId>jasypt-spring-boot-starter</artifactId>
@@ -138,7 +138,8 @@
 					<target>${maven.compiler.target}</target>
 					<compilerArgs>
 						<arg>-Amapstruct.defaultComponentModel=spring</arg>
-						<arg>-Amapstruct.defaultInjectionStrategy=constructor</arg> <!-- Needed or else Dependency Injection will fail -->
+						<arg>-Amapstruct.defaultInjectionStrategy=constructor</arg> <!--
+						Needed or else Dependency Injection will fail -->
 					</compilerArgs>
 				</configuration>
 			</plugin>
@@ -146,7 +147,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<!-- <image> <name>my-app</name> <env> <BP_JVM_VERSION>21</BP_JVM_VERSION> 
+					<!-- <image> <name>my-app</name> <env>
+					<BP_JVM_VERSION>21</BP_JVM_VERSION> 
 						</env> <bindings> <binding>${{basedir}}/bindings:/platform/bindings</binding> 
 						</bindings> </image> -->
 					<excludes>
@@ -156,7 +158,8 @@
 						</exclude>
 					</excludes>
 				</configuration>
-				<!-- <executions> <execution> <id>build-info</id> <goals> <goal>build-image</goal> 
+				<!-- <executions> <execution> <id>build-info</id> <goals>
+				<goal>build-image</goal> 
 					</goals> </execution> </executions> -->
 			</plugin>
 			<plugin>
