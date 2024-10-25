@@ -77,13 +77,28 @@
 			<version>7.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
+
+		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
 		<dependency>
 			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk-s3</artifactId>
-			<version>1.12.464</version>
+			<artifactId>aws-java-sdk</artifactId>
+			<version>1.12.429</version>
 		</dependency>
-		
+
+
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>rekognition</artifactId>
+			<version>2.20.69</version> <!-- Ensure the version is up to date -->
+		</dependency>
+
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>translate</artifactId>
+			<version>2.20.69</version> <!-- Make sure to use the latest version -->
+		</dependency>
+
+
 		<!-- Swagger UI -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -91,7 +106,7 @@
 			<version>2.0.3</version>
 		</dependency>
 
-<!-- Jasypt Encryption -->
+		<!-- Jasypt Encryption -->
 		<dependency>
 			<groupId>com.github.ulisesbocchio</groupId>
 			<artifactId>jasypt-spring-boot-starter</artifactId>
@@ -138,7 +153,8 @@
 					<target>${maven.compiler.target}</target>
 					<compilerArgs>
 						<arg>-Amapstruct.defaultComponentModel=spring</arg>
-						<arg>-Amapstruct.defaultInjectionStrategy=constructor</arg> <!-- Needed or else Dependency Injection will fail -->
+						<arg>-Amapstruct.defaultInjectionStrategy=constructor</arg> <!--
+						Needed or else Dependency Injection will fail -->
 					</compilerArgs>
 				</configuration>
 			</plugin>
@@ -146,7 +162,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<!-- <image> <name>my-app</name> <env> <BP_JVM_VERSION>21</BP_JVM_VERSION> 
+					<!-- <image> <name>my-app</name> <env>
+					<BP_JVM_VERSION>21</BP_JVM_VERSION> 
 						</env> <bindings> <binding>${{basedir}}/bindings:/platform/bindings</binding> 
 						</bindings> </image> -->
 					<excludes>
@@ -156,7 +173,8 @@
 						</exclude>
 					</excludes>
 				</configuration>
-				<!-- <executions> <execution> <id>build-info</id> <goals> <goal>build-image</goal> 
+				<!-- <executions> <execution> <id>build-info</id> <goals>
+				<goal>build-image</goal> 
 					</goals> </execution> </executions> -->
 			</plugin>
 			<plugin>
