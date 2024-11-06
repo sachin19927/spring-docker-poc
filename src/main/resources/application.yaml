@@ -41,8 +41,8 @@ management:
 cloud:
   aws:
     credentials:
-        access-key: ENC(dyXXJ5yO/DQd2F3/gPVeyIejKmjTR87nvsfhMpB8dk09GXhw1M3lVz4mEIAvC/alRxLtQOxcRqGYSduYuk1utA==)
-        secret-key: ENC(XAnsMujdTu3loDDmwTbRzTPFrXnQC7UTSrb+hrDVF3RYMWmm4bzPMv3Ij93ccND/LYuH4Xb61pXJXlUJV2blisIz3VmX/TMEFy+JFs450NE=)
+        access-key: ENC(20Nv7qxw62b3oP6HnGkmZf4VdVvMCgS1QDpUmdEX7LuwilkOKC5/6tOEqBpywnPOwVt2TQFfc6l4qxz6FAKVoQ==)
+        secret-key: ENC(hkdJriWinLDYr/B76UjTY3YioF74A/EHS89zAZZETosqvyBSg4Mk+AJngYovuFUPIZ607yU7Wr0pCqgnlgWPoXCPojYFHF3wwErA/sZOEX4=)
     region: 
         static: ap-south-1
     stack:
